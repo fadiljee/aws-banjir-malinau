@@ -11,10 +11,8 @@ async function main() {
 
   console.log('--- Memulai proses Ingestion data ---');
 
-  // Menghapus data lama agar tidak duplikat saat restart
   await prisma.reading.deleteMany({});
 
-  // Insert massal agar cepat
   await prisma.reading.createMany({
     data: readings.map((r: any) => ({
       sensor_id: r.sensor_id,

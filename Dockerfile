@@ -9,5 +9,3 @@ COPY . .
 RUN npx prisma generate
 
 EXPOSE 3000
-
-# Command dijalankan di docker-compose agar lebih fleksibe

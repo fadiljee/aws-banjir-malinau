@@ -22,8 +22,7 @@ services:
       - db
     environment:
       DATABASE_URL: postgresql://user_pijar:password_pijar@db:5432/ews_malinau
-    # Perintah di bawah ini: tunggu DB siap -> push skema -> jalankan seed -> jalankan app
-    command: sh -c "npx prisma db push && npx prisma db seed && npm run dev"
+    command: sh -c "sleep 10 && npx prisma db push && npx prisma db seed && npm run dev"
 
 volumes:
   postgres_data:
