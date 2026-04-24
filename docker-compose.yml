@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: ews_db
+    environment:
+      POSTGRES_USER: user_pijar
+      POSTGRES_PASSWORD: password_pijar
+      POSTGRES_DB: ews_malinau
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: ews_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://user_pijar:password_pijar@db:5432/ews_malinau
+    # Perintah di bawah ini: tunggu DB siap -> push skema -> jalankan seed -> jalankan app
+    command: sh -c "npx prisma db push && npx prisma db seed && npm run dev"
+
+volumes:
+  postgres_data:
