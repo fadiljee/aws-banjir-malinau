@@ -2,7 +2,7 @@
 
 Sistem pemantauan Early Warning System (EWS) ketinggian air sungai secara real-time untuk pencegahan banjir di Kabupaten Malinau.
 
-![Dashboard Preview](public/preview/preview-ews.png.png)
+![Dashboard Preview](./public/preview/preview-ews.png)
 
 ## Prasyarat
 * Docker dan Docker Compose terinstal di sistem Anda.
