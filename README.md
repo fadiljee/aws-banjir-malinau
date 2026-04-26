@@ -7,21 +7,58 @@ Sistem pemantauan Early Warning System (EWS) ketinggian air sungai secara real-t
 ## Prasyarat
 * Docker dan Docker Compose terinstal di sistem Anda.
 
-## Cara Menjalankan Sistem
+## Getting Started
 
-Aplikasi ini telah sepenuhnya dikemas menggunakan Docker. Anda tidak perlu menginstal Node.js atau PostgreSQL secara lokal di host machine.
+### 1. Clone Repository
+```bash
+git clone https://github.com/fadiljee/aws-banjir-malinau.git
+cd ews-banjir-malinau
+```
 
-1. Clone Repository:
-   git clone https://github.com/fadiljee/aws-banjir-malinau.git
-   cd ews-banjir-malinau
+---
 
-2. Jalankan via Docker Compose:
-   docker compose up --build
+## Docker Setup
+Pastikan Docker Engine dalam keadaan aktif, lalu jalankan:
 
-Perintah ini akan otomatis membangun image, menyalakan database PostgreSQL, melakukan migrasi skema Prisma, meng-ingest data dari readings.json, dan menyalakan server Next.js.
+```bash
+docker compose up
+```
 
-3. Akses Dashboard:
-   Buka browser dan akses http://localhost:3000
+---
+
+## No Docker Setup
+
+### 1. Setup Environment
+Buat file `.env` di root direktori:
+
+```env
+DATABASE_URL="postgresql://username:password@localhost:5432/ews_malinau?schema=public"
+```
+
+---
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+---
+
+### 3. Database Setup
+Pastikan PostgreSQL sudah berjalan, lalu jalankan:
+
+```bash
+npx prisma generate
+npx prisma db push
+npx prisma db seed
+```
+
+---
+
+### 4. Run Development Server
+```bash
+npm run dev
+```
 
 ---
 
